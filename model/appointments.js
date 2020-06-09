@@ -7,7 +7,6 @@ const appointmentsSchema = mongoose.Schema({
     },
     appointmentFor: {
         type: String,
-        required: true,
         max: 6,
         min: 255
     },

@@ -26,6 +26,10 @@ exports.login = async(req, res) => {
      * Create and assign token
      */
     const token = jwt.sign({_id:user._id}, process.env.TOKEN_SECRET)
-    res.header('auth-token', token).send(token)
-    res.send("Logged In")
+    // res.send("Logged In")
+    const response = {
+        token,
+        userId: user._id
+    }
+    res.header('auth-token', token).send(response)
 }

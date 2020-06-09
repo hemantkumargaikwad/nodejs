@@ -7,7 +7,10 @@ exports.registerValidation = (data) =>{
         lastName: Joi.string().min(2).required(),
         email: Joi.string().min(6).required().email(),
         mobile: Joi.string().min(10).required(),
-        password: Joi.string().min(8).required()
+        password: Joi.string().min(8).required(),
+        appointmentFor: Joi.string(),
+        preferredTime: Joi.string(),
+        status: Joi.string()
     })
     return schema.validate(data)
 }
