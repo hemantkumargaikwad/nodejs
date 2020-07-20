@@ -13,6 +13,10 @@ const otpSchema = mongoose.Schema({
         min:8,
         max: 1024
     },
+    isExpired: {
+        type: Boolean,
+        required: true
+    },
     createdDate: {
         type: Date,
         default: Date.now

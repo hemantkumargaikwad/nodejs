@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { string } = require('@hapi/joi')
 
 const userSchema = mongoose.Schema({
     firstName: {
@@ -25,11 +26,9 @@ const userSchema = mongoose.Schema({
         max: 6,
         min: 255
     },
-    password: {
+    birthDate:{
         type: String,
-        required: true,
-        min:8,
-        max: 1024
+        required: true
     },
     createdDate: {
         type: Date,

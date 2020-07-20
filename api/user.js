@@ -22,15 +22,13 @@ exports.userRegistration = async (req, res) => {
   if (mobileExist) {
     const appointment = new Appointments({
       usedId: mobileExist.id,
-      appointmentFor: mobileExist.appointmentFor ? mobileExist.appointmentFor : '',
-      preferredTime: mobileExist.preferredTime ? mobileExist.preferredTime : '',
+      appointmentFor: req.body.appointmentFor,
+      preferredTime: req.body.preferredTime,
       status: 'Pending'
     })
     try {
       const result = await appointment.save()
-      if (result && result.status === 200) {
-        return res.send({ appointment: result.id })
-      }
+      return res.status(200).send({ status: 200, msg: 'success', data: { appointmentId: result.id } })
     } catch (e) {
       return res.status(400).send(e)
     }
@@ -49,13 +47,12 @@ exports.userRegistration = async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        mobile: req.body.mobile,
-        password: hashPassword
+        mobile: req.body.mobile
       })
       const appointment = new Appointments({
         usedId: mobileExist.id,
-        appointmentFor: mobileExist.appointmentFor ? mobileExist.appointmentFor : '',
-        preferredTime: mobileExist.preferredTime ? mobileExist.preferredTime : '',
+        appointmentFor: req.body.appointmentFor,
+        preferredTime: req.body.preferredTime,
         status: 'Pending'
       })
       await appointment.save()
@@ -65,6 +62,4 @@ exports.userRegistration = async (req, res) => {
       res.status(400).send(e)
     }
   }
-  //   user.save()
-  //   res.send('Register Route')
 }
